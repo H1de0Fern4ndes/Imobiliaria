@@ -1,0 +1,1442 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prime Imóveis | Imóveis de Alto Padrão e Consultoria Exclusiva</title>
+  <meta name="description" content="Encontre residências exclusivas, coberturas e mansões com a Prime Imóveis. Simule seu financiamento online e agende uma visita privativa.">
+  
+  <!-- Favicon SVG -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%231e40af'><path d='M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z'/></svg>">
+
+  <!-- Google Fonts: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+          },
+          colors: {
+            primary: {
+              50: '#eff6ff',
+              100: '#dbeafe',
+              600: '#2563eb',
+              700: '#1d4ed8',
+              800: '#1e40af',
+              900: '#1e3a8a',
+              950: '#0f172a'
+            },
+            accent: {
+              500: '#10b981',
+              600: '#059669',
+              700: '#047857'
+            }
+          }
+        }
+      }
+    }
+  </script>
+
+  <!-- Lucide Icons via CDN -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    /* Estilização refinada para sliders */
+    input[type=range] {
+      -webkit-appearance: none;
+      background: #e2e8f0;
+      border-radius: 9999px;
+      height: 8px;
+    }
+    input[type=range]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      height: 22px;
+      width: 22px;
+      border-radius: 50%;
+      background: #1d4ed8;
+      cursor: pointer;
+      border: 3px solid #ffffff;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+      transition: transform 0.15s ease, background-color 0.15s ease;
+    }
+    input[type=range]::-webkit-slider-thumb:hover {
+      transform: scale(1.15);
+      background: #1e3a8a;
+    }
+    /* Suavização de renderização de fontes */
+    body {
+      -webkit-font-smoothing: antialiased;
+    }
+  </style>
+</head>
+<body class="bg-slate-50 text-slate-800 font-sans selection:bg-primary-600 selection:text-white">
+
+  <!-- ==================== HEADER / NAVBAR ==================== -->
+  <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-slate-200/80 transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      
+      <!-- Logo -->
+      <a href="#" class="flex items-center gap-3 group">
+        <div class="w-11 h-11 rounded-xl bg-gradient-to-tr from-primary-900 via-primary-700 to-accent-600 flex items-center justify-center text-white shadow-md shadow-primary-900/10 group-hover:shadow-primary-700/30 transition-all">
+          <i data-lucide="building-2" class="w-6 h-6"></i>
+        </div>
+        <div class="flex flex-col">
+          <span class="text-xl font-extrabold tracking-tight text-primary-950 flex items-center gap-1">
+            PRIME <span class="text-primary-700 font-normal">IMÓVEIS</span>
+            <span class="inline-block w-2 h-2 rounded-full bg-accent-500"></span>
+          </span>
+          <span class="text-[10px] font-semibold tracking-widest text-slate-400 uppercase">Consultoria de Alto Padrão</span>
+        </div>
+      </a>
+
+      <!-- Menu Desktop -->
+      <nav class="hidden md:flex items-center gap-8 text-sm font-medium text-slate-600">
+        <a href="#imoveis" class="hover:text-primary-700 transition-colors">Portfólio</a>
+        <a href="#simulador" class="hover:text-primary-700 transition-colors flex items-center gap-1">
+          <span class="w-2 h-2 rounded-full bg-accent-500 animate-pulse"></span>
+          Simulador
+        </a>
+        <a href="#diferenciais" class="hover:text-primary-700 transition-colors">Diferenciais</a>
+        <a href="#depoimentos" class="hover:text-primary-700 transition-colors">Clientes</a>
+      </nav>
+
+      <!-- CTA Contato Header -->
+      <div class="hidden lg:flex items-center gap-4">
+        <a href="tel:+5511999998888" class="text-xs font-semibold text-slate-500 hover:text-primary-700 flex items-center gap-1.5 transition-colors">
+          <i data-lucide="phone-call" class="w-3.5 h-3.5 text-accent-600"></i>
+          (11) 99999-8888
+        </a>
+        <a href="#simulador" class="inline-flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-primary-700 hover:bg-primary-800 text-white text-sm font-semibold shadow-sm hover:shadow-md hover:shadow-primary-700/20 transition-all">
+          <i data-lucide="calculator" class="w-4 h-4"></i>
+          Simular Agora
+        </a>
+      </div>
+
+      <!-- Botão Hambúrguer Mobile -->
+      <button id="mobileMenuBtn" class="md:hidden p-2 text-slate-700 hover:text-primary-700 focus:outline-none" aria-label="Abrir Menu">
+        <i data-lucide="menu" class="w-6 h-6"></i>
+      </button>
+    </div>
+
+    <!-- Menu Dropdown Mobile -->
+    <div id="mobileMenu" class="hidden md:hidden border-b border-slate-200 bg-white px-6 py-5 space-y-4 shadow-xl">
+      <a href="#imoveis" class="block text-slate-700 font-medium hover:text-primary-700 mobile-nav-link">Portfólio de Imóveis</a>
+      <a href="#simulador" class="block text-slate-700 font-medium hover:text-primary-700 mobile-nav-link">Simulador Financeiro</a>
+      <a href="#diferenciais" class="block text-slate-700 font-medium hover:text-primary-700 mobile-nav-link">Diferenciais Prime</a>
+      <a href="#depoimentos" class="block text-slate-700 font-medium hover:text-primary-700 mobile-nav-link">Depoimentos</a>
+      <div class="pt-3 border-t border-slate-100 flex flex-col gap-3">
+        <a href="https://wa.me/5511999998888?text=Ol%C3%A1%2C%20gostaria%20de%20falar%20com%20um%20consultor%20da%20Prime%20Im%C3%B3veis" target="_blank" class="w-full py-2.5 px-4 rounded-xl bg-accent-600 hover:bg-accent-700 text-white text-center font-semibold text-sm flex items-center justify-center gap-2">
+          <i data-lucide="message-circle" class="w-4 h-4"></i>
+          Falar no WhatsApp
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==================== HERO SECTION COM SIMULADOR INTEGRADO ==================== -->
+  <section class="relative pt-12 pb-20 lg:py-24 overflow-hidden bg-gradient-to-b from-slate-100 via-white to-slate-50 border-b border-slate-200/60">
+    <!-- Efeitos de Luz de Fundo -->
+    <div class="absolute -top-32 -left-32 w-96 h-96 bg-primary-100 rounded-full blur-3xl opacity-70 pointer-events-none"></div>
+    <div class="absolute top-1/2 -right-32 w-96 h-96 bg-accent-500/10 rounded-full blur-3xl opacity-60 pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+        
+        <!-- Coluna Esquerda: Chamada de Alto Padrão -->
+        <div class="lg:col-span-7 space-y-6">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-primary-100/80 border border-primary-200 text-primary-800 text-xs font-bold uppercase tracking-wider">
+            <i data-lucide="award" class="w-4 h-4 text-primary-700"></i>
+            Excelência Imobiliária & Alto Padrão
+          </div>
+
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-slate-900 tracking-tight leading-[1.12]">
+            O endereço do seu sucesso <br class="hidden sm:inline">
+            <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary-800 via-primary-700 to-accent-600">
+              merece exclusividade.
+            </span>
+          </h1>
+
+          <p class="text-lg text-slate-600 max-w-2xl font-normal leading-relaxed">
+            Curadoria criteriosa de mansões, coberturas e residências nobres em São Paulo e regiões mais valorizadas do país. Atendimento private e assessoria jurídica integral.
+          </p>
+
+          <!-- Badges de Autoridade -->
+          <div class="grid grid-cols-3 gap-4 pt-2 max-w-lg border-y border-slate-200/80 py-4">
+            <div>
+              <p class="text-2xl lg:text-3xl font-extrabold text-primary-900">+R$ 650M</p>
+              <p class="text-xs text-slate-500 font-medium">Em Negócios Gerados</p>
+            </div>
+            <div>
+              <p class="text-2xl lg:text-3xl font-extrabold text-primary-900">100%</p>
+              <p class="text-xs text-slate-500 font-medium">Segurança Jurídica</p>
+            </div>
+            <div>
+              <p class="text-2xl lg:text-3xl font-extrabold text-accent-600">15 Anos</p>
+              <p class="text-xs text-slate-500 font-medium">Tradição & Sigilo</p>
+            </div>
+          </div>
+
+          <!-- CTAs -->
+          <div class="flex flex-wrap items-center gap-4 pt-2">
+            <a href="#imoveis" class="inline-flex items-center gap-2 px-7 py-3.5 rounded-xl bg-primary-800 hover:bg-primary-900 text-white font-semibold shadow-lg shadow-primary-900/15 transition-all transform hover:-translate-y-0.5">
+              <span>Explorar Imóveis</span>
+              <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </a>
+            <a href="#simulador" class="inline-flex items-center gap-2 px-6 py-3.5 rounded-xl bg-white hover:bg-slate-50 text-slate-700 border border-slate-300 font-semibold transition-all">
+              <i data-lucide="sliders" class="w-4 h-4 text-primary-700"></i>
+              <span>Simulador Financeiro</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Coluna Direita: Simulador Interativo em Tempo Real -->
+        <div id="simulador" class="lg:col-span-5 scroll-mt-28">
+          <div class="bg-white rounded-3xl p-6 sm:p-8 shadow-2xl shadow-slate-900/10 border border-slate-200/90 relative">
+            
+            <!-- Header do Simulador -->
+            <div class="flex items-center justify-between border-b border-slate-100 pb-4 mb-6">
+              <div>
+                <div class="inline-flex items-center gap-1.5 text-xs font-bold text-accent-600 uppercase tracking-wider mb-1">
+                  <i data-lucide="sparkles" class="w-3.5 h-3.5"></i>
+                  Cálculo Instantâneo
+                </div>
+                <h3 class="text-xl font-bold text-slate-900">Simulador Financeiro</h3>
+              </div>
+              <span class="p-2.5 rounded-2xl bg-primary-50 text-primary-700">
+                <i data-lucide="calculator" class="w-5 h-5"></i>
+              </span>
+            </div>
+
+            <!-- Seletor de Tipo: Financiamento vs Aluguel -->
+            <div class="grid grid-cols-2 gap-2 p-1 bg-slate-100 rounded-xl mb-6 text-sm font-semibold">
+              <button id="tabFinanciamento" class="py-2 rounded-lg bg-white text-primary-800 shadow-sm transition-all" onclick="setSimMode('financiamento')">
+                Financiamento
+              </button>
+              <button id="tabAluguel" class="py-2 rounded-lg text-slate-600 hover:text-slate-900 transition-all" onclick="setSimMode('aluguel')">
+                Aluguel Estimado
+              </button>
+            </div>
+
+            <div class="space-y-5">
+              <!-- Slider: Valor do Imóvel -->
+              <div>
+                <div class="flex justify-between items-center mb-1.5">
+                  <label for="valorImovelInput" class="text-xs font-semibold text-slate-600 uppercase tracking-wide">Valor do Imóvel</label>
+                  <span id="valorImovelDisplay" class="text-lg font-bold text-primary-900">R$ 1.500.000</span>
+                </div>
+                <input 
+                  type="range" 
+                  id="valorImovelInput" 
+                  min="300000" 
+                  max="8000000" 
+                  step="50000" 
+                  value="1500000" 
+                  class="w-full cursor-pointer accent-primary-700"
+                >
+                <div class="flex justify-between text-[11px] text-slate-400 mt-1 font-medium">
+                  <span>R$ 300 mil</span>
+                  <span>R$ 8 milhões</span>
+                </div>
+              </div>
+
+              <!-- Slider: Entrada (%) (Visível apenas em Financiamento) -->
+              <div id="containerEntrada">
+                <div class="flex justify-between items-center mb-1.5">
+                  <label for="percentualEntradaInput" class="text-xs font-semibold text-slate-600 uppercase tracking-wide">
+                    Entrada (<span id="percentualEntradaDisplay">20%</span>)
+                  </label>
+                  <span id="valorEntradaCalculado" class="text-sm font-bold text-accent-600">R$ 300.000</span>
+                </div>
+                <input 
+                  type="range" 
+                  id="percentualEntradaInput" 
+                  min="20" 
+                  max="70" 
+                  step="5" 
+                  value="20" 
+                  class="w-full cursor-pointer accent-accent-600"
+                >
+                <div class="flex justify-between text-[11px] text-slate-400 mt-1 font-medium">
+                  <span>Mínimo 20%</span>
+                  <span>Até 70%</span>
+                </div>
+              </div>
+
+              <!-- Prazo / Anos (Financiamento) -->
+              <div id="containerPrazo">
+                <div class="flex justify-between items-center mb-1.5">
+                  <label for="prazoAnosInput" class="text-xs font-semibold text-slate-600 uppercase tracking-wide">Prazo de Amortização</label>
+                  <span id="prazoAnosDisplay" class="text-sm font-bold text-slate-800">30 anos (360x)</span>
+                </div>
+                <input 
+                  type="range" 
+                  id="prazoAnosInput" 
+                  min="5" 
+                  max="35" 
+                  step="1" 
+                  value="30" 
+                  class="w-full cursor-pointer accent-primary-700"
+                >
+                <div class="flex justify-between text-[11px] text-slate-400 mt-1 font-medium">
+                  <span>5 anos</span>
+                  <span>35 anos</span>
+                </div>
+              </div>
+
+              <!-- Caixa de Resultados Calculados -->
+              <div class="bg-gradient-to-br from-primary-950 to-primary-900 rounded-2xl p-5 text-white shadow-inner mt-4">
+                <div class="text-xs uppercase tracking-wider text-primary-200 font-semibold mb-1" id="labelResultado">
+                  Parcela Mensal Estimada
+                </div>
+                <div class="flex items-baseline justify-between">
+                  <span id="resultadoParcela" class="text-3xl font-extrabold tracking-tight text-white">
+                    R$ 10.920<span class="text-sm font-medium text-primary-200">/mês</span>
+                  </span>
+                  <span class="text-[11px] bg-accent-600/30 text-accent-300 font-semibold px-2 py-0.5 rounded-full border border-accent-500/30">
+                    Taxa ref. ~10.2% a.a.
+                  </span>
+                </div>
+
+                <div class="mt-4 pt-3 border-t border-primary-800/80 grid grid-cols-2 gap-2 text-xs text-primary-100">
+                  <div>
+                    <span class="text-primary-300 block">Total Financiado:</span>
+                    <strong id="resumoFinanciado" class="font-bold text-white">R$ 1.200.000</strong>
+                  </div>
+                  <div>
+                    <span class="text-primary-300 block">Renda Mínima Sugerida:</span>
+                    <strong id="resumoRenda" class="font-bold text-white">R$ 36.400</strong>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Ação do Simulador: Levar Proposta ao WhatsApp -->
+              <button 
+                id="btnEnviarSimulacao" 
+                onclick="enviarSimulacaoWhatsApp()"
+                class="w-full py-3.5 px-4 rounded-xl bg-accent-600 hover:bg-accent-700 active:scale-[0.99] text-white font-bold text-sm flex items-center justify-center gap-2 shadow-lg shadow-accent-600/25 transition-all"
+              >
+                <i data-lucide="message-circle" class="w-4 h-4"></i>
+                <span>Quero Aprovar Minha Proposta</span>
+              </button>
+
+              <p class="text-[11px] text-center text-slate-400">
+                *Simulação ilustrativa calculada pelo Sistema Price. Sujeito à análise de crédito bancário.
+              </p>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== VITRINE DE IMÓVEIS (FILTROS INTERATIVOS) ==================== -->
+  <section id="imoveis" class="py-20 bg-slate-50 scroll-mt-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <!-- Cabeçalho da Seção -->
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-6">
+        <div>
+          <div class="inline-flex items-center gap-1.5 text-xs font-bold text-primary-700 uppercase tracking-widest mb-2">
+            <i data-lucide="compass" class="w-4 h-4"></i>
+            Portfólio Selecionado
+          </div>
+          <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight">
+            Imóveis em Destaque
+          </h2>
+          <p class="text-slate-500 mt-2 max-w-xl text-sm sm:text-base">
+            Casas contemporâneas, coberturas com vista panorâmica e locações de alto padrão com localização privilegiada.
+          </p>
+        </div>
+
+        <!-- Botões de Filtro Rápido (JS Puro) -->
+        <div class="flex flex-wrap items-center gap-2 p-1.5 bg-slate-200/70 rounded-2xl text-xs sm:text-sm font-semibold" id="filtroContainer">
+          <button 
+            data-filter="all" 
+            onclick="filtrarImoveis('all', this)"
+            class="filter-btn active-filter px-4 py-2 rounded-xl bg-primary-800 text-white shadow-sm transition-all"
+          >
+            Todos (<span id="count-all">6</span>)
+          </button>
+          <button 
+            data-filter="casa" 
+            onclick="filtrarImoveis('casa', this)"
+            class="filter-btn px-4 py-2 rounded-xl text-slate-600 hover:text-slate-900 hover:bg-white/60 transition-all"
+          >
+            Casas
+          </button>
+          <button 
+            data-filter="apartamento" 
+            onclick="filtrarImoveis('apartamento', this)"
+            class="filter-btn px-4 py-2 rounded-xl text-slate-600 hover:text-slate-900 hover:bg-white/60 transition-all"
+          >
+            Apartamentos
+          </button>
+          <button 
+            data-filter="aluguel" 
+            onclick="filtrarImoveis('aluguel', this)"
+            class="filter-btn px-4 py-2 rounded-xl text-slate-600 hover:text-slate-900 hover:bg-white/60 transition-all"
+          >
+            Locação
+          </button>
+        </div>
+      </div>
+
+      <!-- Grid de Imóveis -->
+      <div id="gridImoveis" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        
+        <!-- Card 1: Casa Alphaville -->
+        <div class="imovel-card group bg-white rounded-3xl overflow-hidden border border-slate-200/80 shadow-md hover:shadow-2xl transition-all duration-300 flex flex-col" data-categoria="casa" data-titulo="Mansão Alphaville Grand Reserve" data-preco="R$ 4.850.000" data-valor-num="4850000">
+          <div class="relative overflow-hidden aspect-[4/3]">
+            <img 
+              src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?auto=format&fit=crop&w=800&q=80" 
+              alt="Mansão Alphaville" 
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              loading="lazy"
+            >
+            <div class="absolute top-4 left-4 flex gap-2">
+              <span class="px-3 py-1 rounded-full bg-primary-900/90 text-white text-xs font-bold uppercase tracking-wider backdrop-blur-sm">Venda</span>
+              <span class="px-3 py-1 rounded-full bg-accent-600 text-white text-xs font-bold uppercase tracking-wider">Exclusivo</span>
+            </div>
+            <div class="absolute bottom-3 right-3 bg-slate-950/70 backdrop-blur-md text-white text-xs px-2.5 py-1 rounded-lg font-medium flex items-center gap-1">
+              <i data-lucide="map-pin" class="w-3.5 h-3.5 text-accent-500"></i> Alphaville, SP
+            </div>
+          </div>
+          <div class="p-6 flex-1 flex flex-col justify-between">
+            <div>
+              <div class="text-xs text-slate-400 font-semibold mb-1">CÓD: PRM-8012</div>
+              <h3 class="text-xl font-bold text-slate-900 group-hover:text-primary-700 transition-colors">Mansão Alphaville Grand Reserve</h3>
+              <p class="text-slate-500 text-xs mt-1.5 line-clamp-2">Arquitetura biofílica, living com pé direito duplo integrado à piscina aquecida de borda infinita.</p>
+              
+              <!-- Ícones de Especificação -->
+              <div class="grid grid-cols-4 gap-2 py-4 my-4 border-y border-slate-100 text-center text-slate-600">
+                <div class="flex flex-col items-center">
+                  <i data-lucide="maximize" class="w-4 h-4 text-primary-700 mb-1"></i>
+                  <span class="text-xs font-bold text-slate-800">540 m²</span>
+                  <span class="text-[10px] text-slate-400">Área Útil</span>
+                </div>
+                <div class="flex flex-col items-center">
+                  <i data-lucide="bed-double" class="w-4 h-4 text-primary-700 mb-1"></i>
+                  <span class="text-xs font-bold text-slate-800">4</span>
+                  <span class="text-[10px] text-slate-400">Suítes</span>
+                </div>
+                <div class="flex flex-col items-center">
+                  <i data-lucide="bath" class="w-4 h-4 text-primary-700 mb-1"></i>
+                  <span class="text-xs font-bold text-slate-800">6</span>
+                  <span class="text-[10px] text-slate-400">Banhos</span>
+                </div>
+                <div class="flex flex-col items-center">
+                  <i data-lucide="car" class="w-4 h-4 text-primary-700 mb-1"></i>
+                  <span class="text-xs font-bold text-slate-800">4</span>
+                  <span class="text-[10px] text-slate-400">Vagas</span>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <div class="flex items-baseline justify-between mb-4">
+                <span class="text-xs text-slate-400 font-semibold">Valor de Investimento</span>
+                <span class="text-2xl font-extrabold text-primary-900">R$ 4.850.000</span>
+              </div>
+              <div class="grid grid-cols-2 gap-2">
+                <button 
+                  onclick="carregarNoSimulador(4850000, 'financiamento')"
+                  class="py-2.5 px-3 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold flex items-center justify-center gap-1.5 transition-colors"
+                >
+                  <i data-lucide="calculator" class="w-3.5 h-3.5 text-primary-700"></i>
+                  Simular
+                </button>
+                <button 
+                  onclick="abrirModalVisita('Mansão Alphaville Grand Reserve', 'R$ 4.850.000', 'PRM-8012')"
+                  class="py-2.5 px-3 rounded-xl bg-primary-700 hover:bg-primary-800 text-white text-xs font-semibold flex items-center justify-center gap-1.5 transition-all shadow-sm"
+                >
+                  <i data-lucide="calendar" class="w-3.5 h-3.5"></i>
+                  Agendar Visita
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2: Apartamento Jardins -->
+        <div class="imovel-card group bg-white rounded-3xl overflow-hidden border border-slate-200/80 shadow-md hover:shadow-2xl transition-all duration-300 flex flex-col" data-categoria="apartamento" data-titulo="Penthouse Jardins Horizon" data-preco="R$ 6.200.000" data-valor-num="6200000">
+          <div class="relative overflow-hidden aspect-[4/3]">
+            <img 
+              src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?auto=format&fit=crop&w=800&q=80" 
+              alt="Penthouse Jardins" 
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              loading="lazy"
+            >
+            <div class="absolute top-4 left-4 flex gap-2">
+              <span class="px-3 py-1 rounded-full bg-primary-900/90 text-white text-xs font-bold uppercase tracking-wider backdrop-blur-sm">Venda</span>
+            </div>
+            <div class="absolute bottom-3 right-3 bg-slate-950/70 backdrop-blur-md text-white text-xs px-2.5 py-1 rounded-lg font-medium flex items-center gap-1">
+              <i data-lucide="map-pin" class="w-3.5 h-3.5 text-accent-500"></i> Jardins, SP
+            </div>
+          </div>
+          <div class="p-6 flex-1 flex flex-col justify-between">
+            <div>
+              <div class="text-xs text-slate-400 font-semibold mb-1">CÓD: PRM-3190</div>
+              <h3 class="text-xl font-bold text-slate-900 group-hover:text-primary-700 transition-colors">Penthouse Jardins Horizon</h3>
+              <p class="text-slate-500 text-xs mt-1.5 line-clamp-2">Cobertura linear com vista 360° para a copa das árvores dos Jardins. Elevador privativo com biometria.</p>
+              
+              <div class="grid grid-cols-4 gap-2 py-4 my-4 border-y border-slate-100 text-center text-slate-600">
+                <div class="flex flex-col items-center">
+                  <i data-lucide="maximize" class="w-4 h-4 text-primary-700 mb-1"></i>
+                  <span class="text-xs font-bold text-slate-800">385 m²</span>
+                  <span class="text-[10px] text-slate-400">Área Útil</span>
+                </div>
+                <div class="flex flex-col items-center">
+                  <i data-lucide="bed-double" class="w-4 h-4 text-primary-700 mb-1"></i>
+                  <span class="text-xs font-bold text-slate-800">4</span>
+                  <span class="text-[10px] text-slate-400">Suítes</span>
+                </div>
+                <div class="flex flex-col items-center">
+                  <i data-lucide="bath" class="w-4 h-4 text-primary-700 mb-1"></i>
+                  <span class="text-xs font-bold text-slate-800">5</span>
+                  <span class="text-[10px] text-slate-400">Banhos</span>
+                </div>
+                <div class="flex flex-col items-center">
+                  <i data-lucide="car" class="w-4 h-4 text-primary-700 mb-1"></i>
+                  <span class="text-xs font-bold text-slate-800">5</span>
+                  <span class="text-[10px] text-slate-400">Vagas</span>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <div class="flex items-baseline justify-between mb-4">
+                <span class="text-xs text-slate-400 font-semibold">Valor de Investimento</span>
+                <span class="text-2xl font-extrabold text-primary-900">R$ 6.200.000</span>
+              </div>
+              <div class="grid grid-cols-2 gap-2">
+                <button 
+                  onclick="carregarNoSimulador(6200000, 'financiamento')"
+                  class="py-2.5 px-3 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold flex items-center justify-center gap-1.5 transition-colors"
+                >
+                  <i data-lucide="calculator" class="w-3.5 h-3.5 text-primary-700"></i>
+                  Simular
+                </button>
+                <button 
+                  onclick="abrirModalVisita('Penthouse Jardins Horizon', 'R$ 6.200.000', 'PRM-3190')"
+                  class="py-2.5 px-3 rounded-xl bg-primary-700 hover:bg-primary-800 text-white text-xs font-semibold flex items-center justify-center gap-1.5 transition-all shadow-sm"
+                >
+                  <i data-lucide="calendar" class="w-3.5 h-3.5"></i>
+                  Agendar Visita
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3: Locação Premium Brooklin -->
+        <div class="imovel-card group bg-white rounded-3xl overflow-hidden border border-slate-200/80 shadow-md hover:shadow-2xl transition-all duration-300 flex flex-col" data-categoria="aluguel" data-titulo="Duplex Design Brooklin" data-preco="R$ 16.500/mês" data-valor-num="16500">
+          <div class="relative overflow-hidden aspect-[4/3]">
+            <img 
+              src="https://images.unsplash.com/photo-1545324418-cc1a3fa10c00?auto=format&fit=crop&w=800&q=80" 
+              alt="Duplex Brooklin" 
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              loading="lazy"
+            >
+            <div class="absolute top-4 left-4 flex gap-2">
+              <span class="px-3 py-1 rounded-full bg-accent-600 text-white text-xs font-bold uppercase tracking-wider">Locação</span>
+              <span class="px-3 py-1 rounded-full bg-slate-900/80 text-white text-xs font-bold uppercase tracking-wider backdrop-blur-sm">Mobiliado</span>
+            </div>
+            <div class="absolute bottom-3 right-3 bg-slate-950/70 backdrop-blur-md text-white text-xs px-2.5 py-1 rounded-lg font-medium flex items-center gap-1">
+              <i data-lucide="map-pin" class="w-3.5 h-3.5 text-accent-500"></i> Brooklin Novo, SP
+            </div>
+          </div>
+          <div class="p-6 flex-1 flex flex-col justify-between">
+            <div>
+              <div class="text-xs text-slate-400 font-semibold mb-1">CÓD: LOC-4421</div>
+              <h3 class="text-xl font-bold text-slate-900 group-hover:text-primary-700 transition-colors">Duplex Design Brooklin</h3>
+              <p class="text-slate-500 text-xs mt-1.5 line-clamp-2">Completamente decorado por arquiteto renomado. Automação completa de som, iluminação e cortinas.</p>
+              
+              <div class="grid grid-cols-4 gap-2 py-4 my-4 border-y border-slate-100 text-center text-slate-600">
+                <div class="flex flex-col items-center">
+                  <i data-lucide="maximize" class="w-4 h-4 text-primary-700 mb-1"></i>
+                  <span class="text-xs font-bold text-slate-800">210 m²</span>
+                  <span class="text-[10px] text-slate-400">Área Útil</span>
+                </div>
+                <div class="flex flex-col items-center">
+                  <i data-lucide="bed-double" class="w-4 h-4 text-primary-700 mb-1"></i>
+                  <span class="text-xs font-bold text-slate-800">3</span>
+                  <span class="text-[10px] text-slate-400">Suítes</span>
+                </div>
+                <div class="flex flex-col items-center">
+                  <i data-lucide="bath" class="w-4 h-4 text-primary-700 mb-1"></i>
+                  <span class="text-xs font-bold text-slate-800">4</span>
+                  <span class="text-[10px] text-slate-400">Banhos</span>
+                </div>
+                <div class="flex flex-col items-center">
+                  <i data-lucide="car" class="w-4 h-4 text-primary-700 mb-1"></i>
+                  <span class="text-xs font-bold text-slate-800">3</span>
+                  <span class="text-[10px] text-slate-400">Vagas</span>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <div class="flex items-baseline justify-between mb-4">
+                <span class="text-xs text-slate-400 font-semibold">Pacote Locação</span>
+                <span class="text-2xl font-extrabold text-accent-600">R$ 16.500<span class="text-sm font-normal text-slate-500">/mês</span></span>
+              </div>
+              <div class="grid grid-cols-2 gap-2">
+                <button 
+                  onclick="carregarNoSimulador(2800000, 'aluguel')"
+                  class="py-2.5 px-3 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold flex items-center justify-center gap-1.5 transition-colors"
+                >
+                  <i data-lucide="info" class="w-3.5 h-3.5 text-primary-700"></i>
+                  Detalhes
+                </button>
+                <button 
+                  onclick="abrirModalVisita('Duplex Design Brooklin', 'R$ 16.500/mês', 'LOC-4421')"
+                  class="py-2.5 px-3 rounded-xl bg-primary-700 hover:bg-primary-800 text-white text-xs font-semibold flex items-center justify-center gap-1.5 transition-all shadow-sm"
+                >
+                  <i data-lucide="calendar" class="w-3.5 h-3.5"></i>
+                  Agendar Visita
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 4: Casa Condomínio Tamboré -->
+        <div class="imovel-card group bg-white rounded-3xl overflow-hidden border border-slate-200/80 shadow-md hover:shadow-2xl transition-all duration-300 flex flex-col" data-categoria="casa" data-titulo="Villa Contemporânea Tamboré" data-preco="R$ 3.900.000" data-valor-num="3900000">
+          <div class="relative overflow-hidden aspect-[4/3]">
+            <img 
+              src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?auto=format&fit=crop&w=800&q=80" 
+              alt="Villa Tamboré" 
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              loading="lazy"
+            >
+            <div class="absolute top-4 left-4 flex gap-2">
+              <span class="px-3 py-1 rounded-full bg-primary-900/90 text-white text-xs font-bold uppercase tracking-wider backdrop-blur-sm">Venda</span>
+            </div>
+            <div class="absolute bottom-3 right-3 bg-slate-950/70 backdrop-blur-md text-white text-xs px-2.5 py-1 rounded-lg font-medium flex items-center gap-1">
+              <i data-lucide="map-pin" class="w-3.5 h-3.5 text-accent-500"></i> Tamboré, Santana de Parnaíba
+            </div>
+          </div>
+          <div class="p-6 flex-1 flex flex-col justify-between">
+            <div>
+              <div class="text-xs text-slate-400 font-semibold mb-1">CÓD: PRM-7104</div>
+              <h3 class="text-xl font-bold text-slate-900 group-hover:text-primary-700 transition-colors">Villa Contemporânea Tamboré</h3>
+              <p class="text-slate-500 text-xs mt-1.5 line-clamp-2">Paisagismo assinado, adega climatizada para 400 rótulos e espaço gourmet completo com forno de pizza.</p>
+              
+              <div class="grid grid-cols-4 gap-2 py-4 my-4 border-y border-slate-100 text-center text-slate-600">
+                <div class="flex flex-col items-center">
+                  <i data-lucide="maximize" class="w-4 h-4 text-primary-700 mb-1"></i>
+                  <span class="text-xs font-bold text-slate-800">460 m²</span>
+                  <span class="text-[10px] text-slate-400">Área Útil</span>
+                </div>
+                <div class="flex flex-col items-center">
+                  <i data-lucide="bed-double" class="w-4 h-4 text-primary-700 mb-1"></i>
+                  <span class="text-xs font-bold text-slate-800">4</span>
+                  <span class="text-[10px] text-slate-400">Suítes</span>
+                </div>
+                <div class="flex flex-col items-center">
+                  <i data-lucide="bath" class="w-4 h-4 text-primary-700 mb-1"></i>
+                  <span class="text-xs font-bold text-slate-800">5</span>
+                  <span class="text-[10px] text-slate-400">Banhos</span>
+                </div>
+                <div class="flex flex-col items-center">
+                  <i data-lucide="car" class="w-4 h-4 text-primary-700 mb-1"></i>
+                  <span class="text-xs font-bold text-slate-800">4</span>
+                  <span class="text-[10px] text-slate-400">Vagas</span>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <div class="flex items-baseline justify-between mb-4">
+                <span class="text-xs text-slate-400 font-semibold">Valor de Investimento</span>
+                <span class="text-2xl font-extrabold text-primary-900">R$ 3.900.000</span>
+              </div>
+              <div class="grid grid-cols-2 gap-2">
+                <button 
+                  onclick="carregarNoSimulador(3900000, 'financiamento')"
+                  class="py-2.5 px-3 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold flex items-center justify-center gap-1.5 transition-colors"
+                >
+                  <i data-lucide="calculator" class="w-3.5 h-3.5 text-primary-700"></i>
+                  Simular
+                </button>
+                <button 
+                  onclick="abrirModalVisita('Villa Contemporânea Tamboré', 'R$ 3.900.000', 'PRM-7104')"
+                  class="py-2.5 px-3 rounded-xl bg-primary-700 hover:bg-primary-800 text-white text-xs font-semibold flex items-center justify-center gap-1.5 transition-all shadow-sm"
+                >
+                  <i data-lucide="calendar" class="w-3.5 h-3.5"></i>
+                  Agendar Visita
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 5: Apartamento Itaim Bibi -->
+        <div class="imovel-card group bg-white rounded-3xl overflow-hidden border border-slate-200/80 shadow-md hover:shadow-2xl transition-all duration-300 flex flex-col" data-categoria="apartamento" data-titulo="Residência Parque Itaim" data-preco="R$ 5.400.000" data-valor-num="5400000">
+          <div class="relative overflow-hidden aspect-[4/3]">
+            <img 
+              src="https://images.unsplash.com/photo-1567496898669-ee935f5f647a?auto=format&fit=crop&w=800&q=80" 
+              alt="Residência Itaim" 
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              loading="lazy"
+            >
+            <div class="absolute top-4 left-4 flex gap-2">
+              <span class="px-3 py-1 rounded-full bg-primary-900/90 text-white text-xs font-bold uppercase tracking-wider backdrop-blur-sm">Venda</span>
+            </div>
+            <div class="absolute bottom-3 right-3 bg-slate-950/70 backdrop-blur-md text-white text-xs px-2.5 py-1 rounded-lg font-medium flex items-center gap-1">
+              <i data-lucide="map-pin" class="w-3.5 h-3.5 text-accent-500"></i> Itaim Bibi, SP
+            </div>
+          </div>
+          <div class="p-6 flex-1 flex flex-col justify-between">
+            <div>
+              <div class="text-xs text-slate-400 font-semibold mb-1">CÓD: PRM-5520</div>
+              <h3 class="text-xl font-bold text-slate-900 group-hover:text-primary-700 transition-colors">Residência Parque Itaim</h3>
+              <p class="text-slate-500 text-xs mt-1.5 line-clamp-2">Andar alto com vista deslumbrante para o Parque do Povo. Suíte master com closet duplo senhor e senhora.</p>
+              
+              <div class="grid grid-cols-4 gap-2 py-4 my-4 border-y border-slate-100 text-center text-slate-600">
+                <div class="flex flex-col items-center">
+                  <i data-lucide="maximize" class="w-4 h-4 text-primary-700 mb-1"></i>
+                  <span class="text-xs font-bold text-slate-800">290 m²</span>
+                  <span class="text-[10px] text-slate-400">Área Útil</span>
+                </div>
+                <div class="flex flex-col items-center">
+                  <i data-lucide="bed-double" class="w-4 h-4 text-primary-700 mb-1"></i>
+                  <span class="text-xs font-bold text-slate-800">3</span>
+                  <span class="text-[10px] text-slate-400">Suítes</span>
+                </div>
+                <div class="flex flex-col items-center">
+                  <i data-lucide="bath" class="w-4 h-4 text-primary-700 mb-1"></i>
+                  <span class="text-xs font-bold text-slate-800">4</span>
+                  <span class="text-[10px] text-slate-400">Banhos</span>
+                </div>
+                <div class="flex flex-col items-center">
+                  <i data-lucide="car" class="w-4 h-4 text-primary-700 mb-1"></i>
+                  <span class="text-xs font-bold text-slate-800">4</span>
+                  <span class="text-[10px] text-slate-400">Vagas</span>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <div class="flex items-baseline justify-between mb-4">
+                <span class="text-xs text-slate-400 font-semibold">Valor de Investimento</span>
+                <span class="text-2xl font-extrabold text-primary-900">R$ 5.400.000</span>
+              </div>
+              <div class="grid grid-cols-2 gap-2">
+                <button 
+                  onclick="carregarNoSimulador(5400000, 'financiamento')"
+                  class="py-2.5 px-3 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold flex items-center justify-center gap-1.5 transition-colors"
+                >
+                  <i data-lucide="calculator" class="w-3.5 h-3.5 text-primary-700"></i>
+                  Simular
+                </button>
+                <button 
+                  onclick="abrirModalVisita('Residência Parque Itaim', 'R$ 5.400.000', 'PRM-5520')"
+                  class="py-2.5 px-3 rounded-xl bg-primary-700 hover:bg-primary-800 text-white text-xs font-semibold flex items-center justify-center gap-1.5 transition-all shadow-sm"
+                >
+                  <i data-lucide="calendar" class="w-3.5 h-3.5"></i>
+                  Agendar Visita
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 6: Locação Vila Nova Conceição -->
+        <div class="imovel-card group bg-white rounded-3xl overflow-hidden border border-slate-200/80 shadow-md hover:shadow-2xl transition-all duration-300 flex flex-col" data-categoria="aluguel" data-titulo="Garden Loft Vila Nova" data-preco="R$ 19.000/mês" data-valor-num="19000">
+          <div class="relative overflow-hidden aspect-[4/3]">
+            <img 
+              src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?auto=format&fit=crop&w=800&q=80" 
+              alt="Loft Vila Nova" 
+              class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+              loading="lazy"
+            >
+            <div class="absolute top-4 left-4 flex gap-2">
+              <span class="px-3 py-1 rounded-full bg-accent-600 text-white text-xs font-bold uppercase tracking-wider">Locação</span>
+              <span class="px-3 py-1 rounded-full bg-primary-900/80 text-white text-xs font-bold uppercase tracking-wider backdrop-blur-sm">Garden Privativo</span>
+            </div>
+            <div class="absolute bottom-3 right-3 bg-slate-950/70 backdrop-blur-md text-white text-xs px-2.5 py-1 rounded-lg font-medium flex items-center gap-1">
+              <i data-lucide="map-pin" class="w-3.5 h-3.5 text-accent-500"></i> V. Nova Conceição, SP
+            </div>
+          </div>
+          <div class="p-6 flex-1 flex flex-col justify-between">
+            <div>
+              <div class="text-xs text-slate-400 font-semibold mb-1">CÓD: LOC-9102</div>
+              <h3 class="text-xl font-bold text-slate-900 group-hover:text-primary-700 transition-colors">Garden Loft Vila Nova</h3>
+              <p class="text-slate-500 text-xs mt-1.5 line-clamp-2">A poucos passos do Parque Ibirapuera. Jardim privativo com jacuzzi e spa, ideal para quem busca exclusividade.</p>
+              
+              <div class="grid grid-cols-4 gap-2 py-4 my-4 border-y border-slate-100 text-center text-slate-600">
+                <div class="flex flex-col items-center">
+                  <i data-lucide="maximize" class="w-4 h-4 text-primary-700 mb-1"></i>
+                  <span class="text-xs font-bold text-slate-800">175 m²</span>
+                  <span class="text-[10px] text-slate-400">Área Útil</span>
+                </div>
+                <div class="flex flex-col items-center">
+                  <i data-lucide="bed-double" class="w-4 h-4 text-primary-700 mb-1"></i>
+                  <span class="text-xs font-bold text-slate-800">2</span>
+                  <span class="text-[10px] text-slate-400">Suítes</span>
+                </div>
+                <div class="flex flex-col items-center">
+                  <i data-lucide="bath" class="w-4 h-4 text-primary-700 mb-1"></i>
+                  <span class="text-xs font-bold text-slate-800">3</span>
+                  <span class="text-[10px] text-slate-400">Banhos</span>
+                </div>
+                <div class="flex flex-col items-center">
+                  <i data-lucide="car" class="w-4 h-4 text-primary-700 mb-1"></i>
+                  <span class="text-xs font-bold text-slate-800">2</span>
+                  <span class="text-[10px] text-slate-400">Vagas</span>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <div class="flex items-baseline justify-between mb-4">
+                <span class="text-xs text-slate-400 font-semibold">Pacote Locação</span>
+                <span class="text-2xl font-extrabold text-accent-600">R$ 19.000<span class="text-sm font-normal text-slate-500">/mês</span></span>
+              </div>
+              <div class="grid grid-cols-2 gap-2">
+                <button 
+                  onclick="carregarNoSimulador(3200000, 'aluguel')"
+                  class="py-2.5 px-3 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 text-xs font-semibold flex items-center justify-center gap-1.5 transition-colors"
+                >
+                  <i data-lucide="info" class="w-3.5 h-3.5 text-primary-700"></i>
+                  Detalhes
+                </button>
+                <button 
+                  onclick="abrirModalVisita('Garden Loft Vila Nova', 'R$ 19.000/mês', 'LOC-9102')"
+                  class="py-2.5 px-3 rounded-xl bg-primary-700 hover:bg-primary-800 text-white text-xs font-semibold flex items-center justify-center gap-1.5 transition-all shadow-sm"
+                >
+                  <i data-lucide="calendar" class="w-3.5 h-3.5"></i>
+                  Agendar Visita
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Banner de Imóvel Personalizado -->
+      <div class="mt-16 bg-gradient-to-r from-primary-950 via-primary-900 to-primary-800 rounded-3xl p-8 sm:p-12 text-white relative overflow-hidden shadow-xl">
+        <div class="relative z-10 max-w-2xl">
+          <span class="px-3 py-1 rounded-full bg-accent-600 text-[11px] font-bold uppercase tracking-wider">Serviço Private Hunter</span>
+          <h3 class="text-2xl sm:text-3xl font-extrabold mt-3">Não encontrou o imóvel que atende aos seus padrões?</h3>
+          <p class="text-primary-200 text-sm sm:text-base mt-2">
+            Nossos consultores sêniores realizam buscas ativas e sigilosas no mercado off-market para encontrar a propriedade ideal.
+          </p>
+          <div class="mt-6">
+            <a 
+              href="https://wa.me/5511999998888?text=Ol%C3%A1%2C%20procuro%20um%20im%C3%B3vel%20sob%20medida%20com%20o%20servi%C3%A7o%20Private%20Hunter" 
+              target="_blank"
+              class="inline-flex items-center gap-2 px-6 py-3 rounded-xl bg-white text-primary-900 font-bold text-sm hover:bg-primary-50 transition-all shadow-md"
+            >
+              <i data-lucide="user-check" class="w-4 h-4 text-primary-700"></i>
+              Falar com um Concierge Imobiliário
+            </a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==================== DIFERENCIAIS DA PRIME IMÓVEIS ==================== -->
+  <section id="diferenciais" class="py-20 bg-white border-t border-slate-200/80">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-3xl mx-auto mb-16">
+        <span class="text-xs font-bold text-primary-700 uppercase tracking-widest">Por Que a Prime</span>
+        <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 tracking-tight mt-2">
+          Padrão Institucional em Cada Negociação
+        </h2>
+        <p class="text-slate-500 mt-3 text-sm sm:text-base">
+          Combinamos tecnologia de análise de dados, curadoria arquitetônica e departamento jurídico próprio para garantir tranquilidade absoluta.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <!-- Diferencial 1 -->
+        <div class="p-6 rounded-2xl bg-slate-50 border border-slate-200/70 hover:border-primary-300 hover:shadow-lg transition-all group">
+          <div class="w-12 h-12 rounded-xl bg-primary-100 text-primary-700 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+            <i data-lucide="shield-check" class="w-6 h-6"></i>
+          </div>
+          <h3 class="text-lg font-bold text-slate-900 mb-2">Auditoria Jurídica 360°</h3>
+          <p class="text-xs text-slate-500 leading-relaxed">
+            Due diligence completa de certidões, cadeia dominial e análise de risco antes da assinatura de qualquer sinal.
+          </p>
+        </div>
+
+        <!-- Diferencial 2 -->
+        <div class="p-6 rounded-2xl bg-slate-50 border border-slate-200/70 hover:border-primary-300 hover:shadow-lg transition-all group">
+          <div class="w-12 h-12 rounded-xl bg-accent-50 text-accent-600 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+            <i data-lucide="lock" class="w-6 h-6"></i>
+          </div>
+          <h3 class="text-lg font-bold text-slate-900 mb-2">Sigilo & Privacidade</h3>
+          <p class="text-xs text-slate-500 leading-relaxed">
+            Proteção rigorosa de dados pessoais e transações de alto valor através de protocolos confidenciais de atendimento.
+          </p>
+        </div>
+
+        <!-- Diferencial 3 -->
+        <div class="p-6 rounded-2xl bg-slate-50 border border-slate-200/70 hover:border-primary-300 hover:shadow-lg transition-all group">
+          <div class="w-12 h-12 rounded-xl bg-primary-100 text-primary-700 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+            <i data-lucide="badge-percent" class="w-6 h-6"></i>
+          </div>
+          <h3 class="text-lg font-bold text-slate-900 mb-2">Assessoria de Financiamento</h3>
+          <p class="text-xs text-slate-500 leading-relaxed">
+            Parceria direta com os principais bancos (Itaú Private, Bradesco Prime, Santander Select) para as melhores taxas.
+          </p>
+        </div>
+
+        <!-- Diferencial 4 -->
+        <div class="p-6 rounded-2xl bg-slate-50 border border-slate-200/70 hover:border-primary-300 hover:shadow-lg transition-all group">
+          <div class="w-12 h-12 rounded-xl bg-accent-50 text-accent-600 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform">
+            <i data-lucide="sparkle" class="w-6 h-6"></i>
+          </div>
+          <h3 class="text-lg font-bold text-slate-900 mb-2">Curadoria Off-Market</h3>
+          <p class="text-xs text-slate-500 leading-relaxed">
+            Acesso a propriedades que não são anunciadas em portais públicos convencionais, exclusividade para clientes Prime.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== DEPOIMENTOS ==================== -->
+  <section id="depoimentos" class="py-20 bg-slate-50 border-t border-slate-200/70">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-14">
+        <span class="text-xs font-bold text-accent-600 uppercase tracking-widest">Confiança Comprovada</span>
+        <h2 class="text-3xl font-extrabold text-slate-900 tracking-tight mt-2">A Experiência de Quem Já Conquistou</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <!-- Depoimento 1 -->
+        <div class="bg-white p-7 rounded-3xl border border-slate-200/80 shadow-sm hover:shadow-md transition-shadow">
+          <div class="flex items-center gap-1 text-amber-400 mb-4">
+            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+          </div>
+          <p class="text-sm text-slate-600 leading-relaxed italic mb-6">
+            "A assessoria da Prime Imóveis foi cirúrgica. Em menos de 2 semanas encontramos a cobertura que buscávamos nos Jardins, com total transparência e suporte jurídico."
+          </p>
+          <div class="flex items-center gap-3 border-t border-slate-100 pt-4">
+            <div class="w-10 h-10 rounded-full bg-primary-100 text-primary-800 font-bold flex items-center justify-center text-xs">
+              RC
+            </div>
+            <div>
+              <p class="text-xs font-bold text-slate-900">Dr. Roberto Castilho</p>
+              <p class="text-[11px] text-slate-400">Investidor & Cirurgião</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Depoimento 2 -->
+        <div class="bg-white p-7 rounded-3xl border border-slate-200/80 shadow-sm hover:shadow-md transition-shadow">
+          <div class="flex items-center gap-1 text-amber-400 mb-4">
+            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+          </div>
+          <p class="text-sm text-slate-600 leading-relaxed italic mb-6">
+            "O simulador do site nos deu a exata noção das parcelas e taxas. Quando fomos ao banco, o valor aprovado bateu exatamente com o previsto pela equipe da Prime."
+          </p>
+          <div class="flex items-center gap-3 border-t border-slate-100 pt-4">
+            <div class="w-10 h-10 rounded-full bg-accent-100 text-accent-800 font-bold flex items-center justify-center text-xs">
+              MA
+            </div>
+            <div>
+              <p class="text-xs font-bold text-slate-900">Mariana Alencar</p>
+              <p class="text-[11px] text-slate-400">Empresária no Setor Tech</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Depoimento 3 -->
+        <div class="bg-white p-7 rounded-3xl border border-slate-200/80 shadow-sm hover:shadow-md transition-shadow">
+          <div class="flex items-center gap-1 text-amber-400 mb-4">
+            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+            <i data-lucide="star" class="w-4 h-4 fill-current"></i>
+          </div>
+          <p class="text-sm text-slate-600 leading-relaxed italic mb-6">
+            "A discrição nas negociações de alto valor faz toda a diferença. O atendimento superou o padrão das imobiliárias tradicionais do mercado."
+          </p>
+          <div class="flex items-center gap-3 border-t border-slate-100 pt-4">
+            <div class="w-10 h-10 rounded-full bg-primary-100 text-primary-800 font-bold flex items-center justify-center text-xs">
+              FS
+            </div>
+            <div>
+              <p class="text-xs font-bold text-slate-900">Felipe Santoro</p>
+              <p class="text-[11px] text-slate-400">Diretor de Private Equity</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FOOTER INSTITUCIONAL ==================== -->
+  <footer class="bg-primary-950 text-slate-400 pt-16 pb-12 border-t border-primary-900">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-primary-900/60">
+        
+        <!-- Coluna 1: Marca e Contato -->
+        <div class="lg:col-span-2 space-y-4">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-primary-700 flex items-center justify-center text-white">
+              <i data-lucide="building-2" class="w-5 h-5"></i>
+            </div>
+            <span class="text-xl font-extrabold tracking-tight text-white">
+              PRIME <span class="text-primary-400 font-normal">IMÓVEIS</span>
+            </span>
+          </div>
+          <p class="text-xs text-slate-400 max-w-sm leading-relaxed">
+            Assessoria de elite em compra, venda e locação de propriedades residenciais nobres. Segurança técnica e discrição absoluta.
+          </p>
+          <div class="space-y-2 text-xs text-slate-300 pt-2">
+            <div class="flex items-center gap-2">
+              <i data-lucide="map-pin" class="w-4 h-4 text-accent-500"></i>
+              <span>Av. Brigadeiro Faria Lima, 3477 - 14º Andar, Itaim Bibi - SP</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <i data-lucide="mail" class="w-4 h-4 text-accent-500"></i>
+              <span>atendimento@primeimoveis.com.br</span>
+            </div>
+            <div class="flex items-center gap-2">
+              <i data-lucide="shield" class="w-4 h-4 text-accent-500"></i>
+              <span>CRECI 28.450-J | CNPJ 00.000.000/0001-00</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Coluna 2: Navegação -->
+        <div>
+          <h4 class="text-xs font-bold text-white uppercase tracking-wider mb-4">Portfólio</h4>
+          <ul class="space-y-2 text-xs">
+            <li><a href="#imoveis" class="hover:text-white transition-colors">Mansões em Alphaville</a></li>
+            <li><a href="#imoveis" class="hover:text-white transition-colors">Coberturas nos Jardins</a></li>
+            <li><a href="#imoveis" class="hover:text-white transition-colors">Apartamentos no Itaim</a></li>
+            <li><a href="#imoveis" class="hover:text-white transition-colors">Locações Corporativas</a></li>
+          </ul>
+        </div>
+
+        <!-- Coluna 3: Ferramentas -->
+        <div>
+          <h4 class="text-xs font-bold text-white uppercase tracking-wider mb-4">Serviços</h4>
+          <ul class="space-y-2 text-xs">
+            <li><a href="#simulador" class="hover:text-white transition-colors">Simulador de Parcelas</a></li>
+            <li><a href="#diferenciais" class="hover:text-white transition-colors">Avaliação Patrimonial</a></li>
+            <li><a href="#diferenciais" class="hover:text-white transition-colors">Due Diligence Jurídica</a></li>
+            <li><a href="#diferenciais" class="hover:text-white transition-colors">Private Hunter</a></li>
+          </ul>
+        </div>
+
+        <!-- Coluna 4: Atendimento Direto -->
+        <div>
+          <h4 class="text-xs font-bold text-white uppercase tracking-wider mb-4">Atendimento</h4>
+          <p class="text-xs text-slate-400 mb-3">Segunda a Sábado, das 08h às 20h.</p>
+          <a 
+            href="https://wa.me/5511999998888?text=Ol%C3%A1%2C%20gostaria%20de%20informa%C3%A7%C3%B5es%20sobre%20im%C3%B3veis" 
+            target="_blank" 
+            class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-accent-600 hover:bg-accent-700 text-white font-semibold text-xs transition-colors"
+          >
+            <i data-lucide="message-circle" class="w-4 h-4"></i>
+            WhatsApp Corretor
+          </a>
+        </div>
+
+      </div>
+
+      <!-- Copyright e Informações Legais -->
+      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-[11px] text-slate-500 gap-4">
+        <p>&copy; <span id="currentYear"></span> Prime Imóveis Consultoria Ltda. Todos os direitos reservados.</p>
+        <div class="flex gap-6">
+          <a href="#" class="hover:text-slate-400">Termos de Uso</a>
+          <a href="#" class="hover:text-slate-400">Política de Privacidade (LGPD)</a>
+          <a href="#" class="hover:text-slate-400">Código de Ética CRECI</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==================== MODAL DE AGENDAMENTO DE VISITA ==================== -->
+  <div id="modalVisita" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4">
+    <!-- Backdrop com blur escuro -->
+    <div class="absolute inset-0 bg-slate-950/70 backdrop-blur-sm transition-opacity" onclick="fecharModalVisita()"></div>
+
+    <!-- Conteúdo do Modal -->
+    <div class="relative bg-white w-full max-w-lg rounded-3xl shadow-2xl border border-slate-100 overflow-hidden z-10 transform transition-all">
+      
+      <!-- Topo com Detalhes do Imóvel Selecionado -->
+      <div class="bg-gradient-to-r from-primary-900 to-primary-800 p-6 text-white relative">
+        <button 
+          onclick="fecharModalVisita()" 
+          class="absolute top-5 right-5 text-slate-300 hover:text-white p-1 rounded-lg hover:bg-white/10 transition-colors"
+          aria-label="Fechar"
+        >
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+        <span class="inline-block px-2.5 py-0.5 rounded-full bg-accent-600 text-[10px] font-bold uppercase tracking-wider mb-2">
+          Visita Privativa
+        </span>
+        <h3 id="modalImovelTitulo" class="text-xl font-extrabold leading-snug">Mansão Alphaville</h3>
+        <div class="flex items-center gap-3 text-xs text-primary-200 mt-1">
+          <span id="modalImovelCodigo" class="font-mono">CÓD: PRM-0000</span>
+          <span>•</span>
+          <span id="modalImovelPreco" class="font-bold text-white">R$ 0,00</span>
+        </div>
+      </div>
+
+      <!-- Formulário de Captura -->
+      <form id="formAgendamento" onsubmit="confirmarAgendamento(event)" class="p-6 sm:p-8 space-y-4">
+        <div>
+          <label for="visitanteNome" class="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-1">Seu Nome Completo *</label>
+          <div class="relative">
+            <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+              <i data-lucide="user" class="w-4 h-4"></i>
+            </span>
+            <input 
+              type="text" 
+              id="visitanteNome" 
+              required 
+              placeholder="Ex: Carlos Eduardo Silveira"
+              class="w-full pl-10 pr-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-primary-600 focus:border-transparent text-sm bg-slate-50/50"
+            >
+          </div>
+        </div>
+
+        <div>
+          <label for="visitanteWhats" class="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-1">WhatsApp com DDD *</label>
+          <div class="relative">
+            <span class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-400">
+              <i data-lucide="phone" class="w-4 h-4"></i>
+            </span>
+            <input 
+              type="tel" 
+              id="visitanteWhats" 
+              required 
+              placeholder="(11) 99999-9999"
+              class="w-full pl-10 pr-4 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-primary-600 focus:border-transparent text-sm bg-slate-50/50"
+            >
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label for="visitanteData" class="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-1">Data Desejada *</label>
+            <div class="relative">
+              <input 
+                type="date" 
+                id="visitanteData" 
+                required 
+                class="w-full px-3 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-primary-600 focus:border-transparent text-xs sm:text-sm bg-slate-50/50"
+              >
+            </div>
+          </div>
+          <div>
+            <label for="visitantePeriodo" class="block text-xs font-bold text-slate-700 uppercase tracking-wide mb-1">Horário Preferido</label>
+            <select 
+              id="visitantePeriodo" 
+              class="w-full px-3 py-3 rounded-xl border border-slate-200 focus:outline-none focus:ring-2 focus:ring-primary-600 focus:border-transparent text-xs sm:text-sm bg-slate-50/50"
+            >
+              <option value="Manhã (09h às 12h)">Manhã (09h - 12h)</option>
+              <option value="Tarde (14h às 18h)" selected>Tarde (14h - 18h)</option>
+              <option value="Final de Tarde (17h às 19h)">Fim de Tarde (17h - 19h)</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="pt-2">
+          <button 
+            type="submit" 
+            class="w-full py-3.5 px-4 rounded-xl bg-accent-600 hover:bg-accent-700 text-white font-bold text-sm flex items-center justify-center gap-2 shadow-lg shadow-accent-600/30 transition-all transform hover:-translate-y-0.5 active:translate-y-0"
+          >
+            <i data-lucide="check-circle" class="w-4 h-4"></i>
+            <span>Confirmar e Abrir no WhatsApp</span>
+          </button>
+        </div>
+
+        <p class="text-[11px] text-center text-slate-400">
+          Você será direcionado diretamente ao corretor responsável com todos os dados preenchidos.
+        </p>
+      </form>
+    </div>
+  </div>
+
+  <!-- ==================== JAVASCRIPT PURO ==================== -->
+  <script>
+    // Inicialização de Ícones Lucide
+    document.addEventListener('DOMContentLoaded', () => {
+      lucide.createIcons();
+      document.getElementById('currentYear').textContent = new Date().getFullYear();
+      
+      // Define data mínima no date picker para hoje
+      const hoje = new Date().toISOString().split('T')[0];
+      const dataInput = document.getElementById('visitanteData');
+      if (dataInput) {
+        dataInput.min = hoje;
+        dataInput.value = hoje;
+      }
+
+      // Inicializa cálculos do simulador
+      calcularSimulacao();
+    });
+
+    // -----------------------------------------------------------------
+    // MENU MOBILE TOGGLE
+    // -----------------------------------------------------------------
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    document.querySelectorAll('.mobile-nav-link').forEach(link => {
+      link.addEventListener('click', () => {
+        mobileMenu.classList.add('hidden');
+      });
+    });
+
+    // -----------------------------------------------------------------
+    // 1. CALCULADORA / SIMULADOR DE FINANCIAMENTO E ALUGUEL
+    // -----------------------------------------------------------------
+    let simMode = 'financiamento'; // 'financiamento' ou 'aluguel'
+
+    const valorImovelInput = document.getElementById('valorImovelInput');
+    const valorImovelDisplay = document.getElementById('valorImovelDisplay');
+    const percentualEntradaInput = document.getElementById('percentualEntradaInput');
+    const percentualEntradaDisplay = document.getElementById('percentualEntradaDisplay');
+    const valorEntradaCalculado = document.getElementById('valorEntradaCalculado');
+    const prazoAnosInput = document.getElementById('prazoAnosInput');
+    const prazoAnosDisplay = document.getElementById('prazoAnosDisplay');
+    
+    const containerEntrada = document.getElementById('containerEntrada');
+    const containerPrazo = document.getElementById('containerPrazo');
+    const labelResultado = document.getElementById('labelResultado');
+    const resultadoParcela = document.getElementById('resultadoParcela');
+    const resumoFinanciado = document.getElementById('resumoFinanciado');
+    const resumoRenda = document.getElementById('resumoRenda');
+
+    function formatarMoeda(valor) {
+      return valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL', maximumFractionDigits: 0 });
+    }
+
+    function setSimMode(mode) {
+      simMode = mode;
+      const tabFin = document.getElementById('tabFinanciamento');
+      const tabAlu = document.getElementById('tabAluguel');
+
+      if (mode === 'financiamento') {
+        tabFin.className = 'py-2 rounded-lg bg-white text-primary-800 shadow-sm transition-all';
+        tabAlu.className = 'py-2 rounded-lg text-slate-600 hover:text-slate-900 transition-all';
+        containerEntrada.style.display = 'block';
+        containerPrazo.style.display = 'block';
+        labelResultado.textContent = 'Parcela Mensal Estimada';
+      } else {
+        tabAlu.className = 'py-2 rounded-lg bg-white text-primary-800 shadow-sm transition-all';
+        tabFin.className = 'py-2 rounded-lg text-slate-600 hover:text-slate-900 transition-all';
+        containerEntrada.style.display = 'none';
+        containerPrazo.style.display = 'none';
+        labelResultado.textContent = 'Aluguel Mensal Sugerido (Yield ~0.50% a.m.)';
+      }
+      calcularSimulacao();
+    }
+
+    function calcularSimulacao() {
+      const valorImovel = parseFloat(valorImovelInput.value);
+      valorImovelDisplay.textContent = formatarMoeda(valorImovel);
+
+      if (simMode === 'financiamento') {
+        const percEntrada = parseFloat(percentualEntradaInput.value);
+        percentualEntradaDisplay.textContent = percEntrada + '%';
+
+        const valorEntrada = valorImovel * (percEntrada / 100);
+        valorEntradaCalculado.textContent = formatarMoeda(valorEntrada);
+
+        const anos = parseInt(prazoAnosInput.value, 10);
+        const meses = anos * 12;
+        prazoAnosDisplay.textContent = `${anos} anos (${meses}x)`;
+
+        const valorFinanciado = valorImovel - valorEntrada;
+        resumoFinanciado.textContent = formatarMoeda(valorFinanciado);
+
+        // Cálculo Sistema Price com taxa de ~10.2% a.a. (~0.812% a.m.)
+        const taxaMensal = 0.00812;
+        const parcela = valorFinanciado * ( (taxaMensal * Math.pow(1 + taxaMensal, meses)) / (Math.pow(1 + taxaMensal, meses) - 1) );
+
+        resultadoParcela.innerHTML = `${formatarMoeda(parcela)}<span class="text-sm font-medium text-primary-200">/mês</span>`;
+        
+        // Renda recomendada: parcela não deve exceder 30% da renda bruta familiar
+        const rendaRecomendada = parcela / 0.30;
+        resumoRenda.textContent = formatarMoeda(rendaRecomendada);
+
+      } else {
+        // Modo Aluguel estimado com yield médio de 0.45% a 0.55% ao mês sobre o valor venal
+        const aluguelEstimado = valorImovel * 0.005;
+        resultadoParcela.innerHTML = `${formatarMoeda(aluguelEstimado)}<span class="text-sm font-medium text-primary-200">/mês</span>`;
+        resumoFinanciado.textContent = 'Garantia Seguro Fiança / Caução';
+        resumoRenda.textContent = formatarMoeda(aluguelEstimado * 3);
+      }
+    }
+
+    // Eventos nos sliders
+    valorImovelInput.addEventListener('input', calcularSimulacao);
+    percentualEntradaInput.addEventListener('input', calcularSimulacao);
+    prazoAnosInput.addEventListener('input', calcularSimulacao);
+
+    // Enviar dados simulados direto para o WhatsApp do corretor
+    function enviarSimulacaoWhatsApp() {
+      const valor = valorImovelDisplay.textContent;
+      let mensagem = '';
+
+      if (simMode === 'financiamento') {
+        const entrada = valorEntradaCalculado.textContent;
+        const parcela = resultadoParcela.innerText.trim();
+        const prazo = prazoAnosDisplay.textContent;
+        mensagem = `Olá! Realizei uma simulação no site da Prime Imóveis:%0A` +
+                   `• *Valor do Imóvel:* ${encodeURIComponent(valor)}%0A` +
+                   `• *Entrada:* ${encodeURIComponent(entrada)} (${percentualEntradaInput.value}%)%0A` +
+                   `• *Prazo:* ${encodeURIComponent(prazo)}%0A` +
+                   `• *Parcela Estimada:* ${encodeURIComponent(parcela)}%0A` +
+                   `Gostaria de falar com um consultor para aprovar minha carta de crédito!`;
+      } else {
+        const aluguel = resultadoParcela.innerText.trim();
+        mensagem = `Olá! Gostaria de consultar opções de aluguel para imóveis na faixa de *${encodeURIComponent(valor)}*, com estimativa mensal em torno de *${encodeURIComponent(aluguel)}*.`;
+      }
+
+      const telefoneWhatsApp = '5511999998888';
+      window.open(`https://wa.me/${telefoneWhatsApp}?text=${mensagem}`, '_blank');
+    }
+
+    // Função para carregar valor de um card específico no simulador
+    function carregarNoSimulador(valor, modo) {
+      setSimMode(modo);
+      valorImovelInput.value = valor;
+      calcularSimulacao();
+
+      // Scroll suave até o simulador
+      const elementoSimulador = document.getElementById('simulador');
+      elementoSimulador.scrollIntoView({ behavior: 'smooth', block: 'center' });
+
+      // Efeito de destaque no simulador
+      elementoSimulador.classList.add('ring-4', 'ring-primary-600/40', 'transition-all');
+      setTimeout(() => {
+        elementoSimulador.classList.remove('ring-4', 'ring-primary-600/40');
+      }, 1500);
+    }
+
+    // -----------------------------------------------------------------
+    // 2. FILTRO INTERATIVO DE IMÓVEIS (SEM RECARREGAR PÁGINA)
+    // -----------------------------------------------------------------
+    function filtrarImoveis(categoria, botaoClicado) {
+      // Atualiza o visual dos botões
+      const botoes = document.querySelectorAll('.filter-btn');
+      botoes.forEach(btn => {
+        btn.className = 'filter-btn px-4 py-2 rounded-xl text-slate-600 hover:text-slate-900 hover:bg-white/60 transition-all';
+      });
+      botaoClicado.className = 'filter-btn active-filter px-4 py-2 rounded-xl bg-primary-800 text-white shadow-sm transition-all';
+
+      // Filtra os cards
+      const cards = document.querySelectorAll('.imovel-card');
+      cards.forEach(card => {
+        const catCard = card.getAttribute('data-categoria');
+        if (categoria === 'all' || catCard === categoria) {
+          card.style.display = 'flex';
+          card.style.opacity = '0';
+          setTimeout(() => {
+            card.style.opacity = '1';
+          }, 50);
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    // -----------------------------------------------------------------
+    // 3. MODAL DE AGENDAMENTO DE VISITA & WHATSAPP
+    // -----------------------------------------------------------------
+    let imovelSelecionadoAtual = {
+      titulo: '',
+      preco: '',
+      codigo: ''
+    };
+
+    function abrirModalVisita(titulo, preco, codigo) {
+      imovelSelecionadoAtual = { titulo, preco, codigo };
+
+      document.getElementById('modalImovelTitulo').textContent = titulo;
+      document.getElementById('modalImovelPreco').textContent = preco;
+      document.getElementById('modalImovelCodigo').textContent = `CÓD: ${codigo}`;
+
+      const modal = document.getElementById('modalVisita');
+      modal.classList.remove('hidden');
+      document.body.style.overflow = 'hidden'; // Evita scroll do fundo
+    }
+
+    function fecharModalVisita() {
+      const modal = document.getElementById('modalVisita');
+      modal.classList.add('hidden');
+      document.body.style.overflow = 'auto';
+    }
+
+    // Fechar ao pressionar tecla ESC
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') fecharModalVisita();
+    });
+
+    function confirmarAgendamento(e) {
+      e.preventDefault();
+      
+      const nome = document.getElementById('visitanteNome').value.trim();
+      const whatsapp = document.getElementById('visitanteWhats').value.trim();
+      const dataRaw = document.getElementById('visitanteData').value;
+      const periodo = document.getElementById('visitantePeriodo').value;
+
+      // Formatar data para exibição pt-BR (DD/MM/AAAA)
+      let dataFormatada = dataRaw;
+      if (dataRaw) {
+        const partes = dataRaw.split('-');
+        dataFormatada = `${partes[2]}/${partes[1]}/${partes[0]}`;
+      }
+
+      // Monta mensagem personalizada
+      const mensagem = `Olá, meu nome é *${encodeURIComponent(nome)}*!%0A` +
+                       `Gostaria de confirmar o agendamento de uma visita privativa:%0A%0A` +
+                       `🏠 *Imóvel:* ${encodeURIComponent(imovelSelecionadoAtual.titulo)}%0A` +
+                       `🔖 *Código:* ${encodeURIComponent(imovelSelecionadoAtual.codigo)}%0A` +
+                       `💰 *Valor:* ${encodeURIComponent(imovelSelecionadoAtual.preco)}%0A` +
+                       `📅 *Data Pretendida:* ${encodeURIComponent(dataFormatada)}%0A` +
+                       `⏰ *Turno Preferido:* ${encodeURIComponent(periodo)}%0A` +
+                       `📱 *Meu Contato:* ${encodeURIComponent(whatsapp)}%0A%0A` +
+                       `Aguardo confirmação de disponibilidade da equipe Prime Imóveis. Obrigado!`;
+
+      const telefoneCorretor = '5511999998888';
+      const urlWhats = `https://wa.me/${telefoneCorretor}?text=${mensagem}`;
+
+      // Abre WhatsApp em nova aba
+      window.open(urlWhats, '_blank');
+
+      // Limpa e fecha modal
+      document.getElementById('formAgendamento').reset();
+      fecharModalVisita();
+    }
+  </script>
+</body>
+</html>
